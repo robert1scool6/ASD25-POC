@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ASD25-POC</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar left">
+        <h1>ASD25-POC</h1>
+        <p class="muted">Bubble-model-first planning scaffold</p>
+
+        <section>
+          <h2>Views</h2>
+          <ul>
+            <li>2D Bubble Diagram</li>
+            <li>2.5D Levels</li>
+            <li>3D Block Massing (later)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Prompt</h2>
+          <textarea placeholder="e.g. Increase total GFA by 20% while keeping retail on the ground floor."></textarea>
+          <button>Propose Update</button>
+        </section>
+      </aside>
+
+      <main class="canvas-area">
+        <div class="toolbar">
+          <button class="active">2D</button>
+          <button>2.5D</button>
+          <button disabled>3D</button>
+        </div>
+
+        <section class="canvas-card">
+          <h2>Bubble Canvas Placeholder</h2>
+          <p>This scaffold is ready for a future interactive bubble editor.</p>
+
+          <div class="bubbles-demo">
+            <div class="bubble social large" style="left: 14%; top: 22%;">Primary Social Space</div>
+            <div class="bubble retail medium" style="left: 42%; top: 26%;">Retail Space</div>
+            <div class="bubble sports xlarge" style="left: 66%; top: 31%;">Basketball Court</div>
+            <div class="bubble education medium" style="left: 28%; top: 63%;">Learning Hub</div>
+            <div class="bubble social small" style="left: 52%; top: 63%;">Secondary Social</div>
+            <svg class="links" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <line x1="22" y1="28" x2="48" y2="30" />
+              <line x1="22" y1="28" x2="57" y2="66" />
+              <line x1="48" y1="30" x2="72" y2="35" />
+              <line x1="35" y1="66" x2="57" y2="66" />
+            </svg>
+          </div>
+        </section>
+      </main>
+
+      <aside class="sidebar right">
+        <section>
+          <h2>Model Summary</h2>
+          <ul>
+            <li>Spaces: 5</li>
+            <li>Levels: 3</li>
+            <li>Relationships: 5</li>
+            <li>Target GFA: 4700</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Agent Comments</h2>
+          <div class="card">
+            <strong>Architect</strong>
+            <p>Keep public-facing spaces clustered near the main access edge.</p>
+          </div>
+          <div class="card">
+            <strong>Planner</strong>
+            <p>Ground-floor demand conflict exists between retail, sports, and social uses.</p>
+          </div>
+          <div class="card muted-card">
+            <strong>Sustainability</strong>
+            <p>Future slot for daylight / compactness comments.</p>
+          </div>
+        </section>
+
+        <section>
+          <h2>Next Build Targets</h2>
+          <ol>
+            <li>Load sample JSON</li>
+            <li>Render data-driven bubbles</li>
+            <li>Apply structured patches</li>
+            <li>Add level-aware mode</li>
+          </ol>
+        </section>
+      </aside>
+    </div>
+  </body>
+</html>

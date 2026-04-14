@@ -1,0 +1,164 @@
+:root {
+  color-scheme: dark;
+  --bg: #0b1020;
+  --panel: #121a31;
+  --panel-2: #18223f;
+  --text: #eef2ff;
+  --muted: #aab5d6;
+  --accent: #79a8ff;
+  --line: #334268;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: linear-gradient(180deg, #0b1020 0%, #0f1730 100%);
+  color: var(--text);
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 280px 1fr 320px;
+  min-height: 100vh;
+}
+
+.sidebar,
+.canvas-card,
+.toolbar,
+.card {
+  background: rgba(18, 26, 49, 0.94);
+  border: 1px solid rgba(121, 168, 255, 0.12);
+  border-radius: 16px;
+}
+
+.sidebar {
+  margin: 16px;
+  padding: 18px;
+}
+
+.sidebar section + section {
+  margin-top: 18px;
+}
+
+.canvas-area {
+  padding: 16px 0;
+}
+
+.toolbar {
+  display: flex;
+  gap: 10px;
+  margin: 0 16px 16px;
+  padding: 12px;
+}
+
+.canvas-card {
+  margin: 0 16px 16px;
+  padding: 18px;
+  min-height: calc(100vh - 80px);
+}
+
+textarea {
+  width: 100%;
+  min-height: 110px;
+  margin-bottom: 10px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: #0c1326;
+  color: var(--text);
+}
+
+button {
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 14px;
+  background: #273862;
+  color: var(--text);
+  cursor: pointer;
+}
+
+button.active {
+  background: var(--accent);
+  color: #081120;
+  font-weight: 700;
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.bubbles-demo {
+  position: relative;
+  height: 72vh;
+  margin-top: 18px;
+  border-radius: 18px;
+  border: 1px dashed var(--line);
+  background:
+    radial-gradient(circle at top, rgba(121, 168, 255, 0.08), transparent 45%),
+    linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0));
+  overflow: hidden;
+}
+
+.links {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.links line {
+  stroke: rgba(216, 226, 255, 0.55);
+  stroke-width: 0.4;
+  stroke-dasharray: 1.2 1;
+}
+
+.bubble {
+  position: absolute;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.18);
+  color: #071120;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.large { width: 170px; height: 170px; }
+.xlarge { width: 210px; height: 210px; }
+.medium { width: 130px; height: 130px; }
+.small { width: 105px; height: 105px; }
+
+.social { background: #8fd3ff; }
+.retail { background: #ffcc8f; }
+.sports { background: #ff9eb3; }
+.education { background: #b8ffb6; }
+
+.card {
+  padding: 12px 14px;
+  margin-bottom: 10px;
+}
+
+.muted-card {
+  opacity: 0.82;
+}
+
+ul, ol {
+  padding-left: 20px;
+}
+
+li + li {
+  margin-top: 6px;
+}

@@ -1,0 +1,123 @@
+{
+  "project": {
+    "id": "asd25-demo-01",
+    "name": "ASD25 Baseline Campus",
+    "version": "0.1.0",
+    "description": "Baseline bubble model for early ASD25 POC work."
+  },
+  "site": {
+    "width": 1200,
+    "height": 800,
+    "referenceFeatures": [
+      {
+        "id": "rf1",
+        "name": "Main Road",
+        "kind": "road",
+        "position": { "x": 80, "y": 740 }
+      },
+      {
+        "id": "rf2",
+        "name": "MTR Entrance",
+        "kind": "transit",
+        "position": { "x": 1030, "y": 710 }
+      }
+    ]
+  },
+  "levels": [
+    { "id": "L1", "name": "Ground Floor", "elevation": 0 },
+    { "id": "L2", "name": "First Floor", "elevation": 4.5 },
+    { "id": "L3", "name": "Second Floor", "elevation": 9 }
+  ],
+  "spaces": [
+    {
+      "id": "s1",
+      "name": "Primary Social Space",
+      "program": "social",
+      "area": 1200,
+      "level": "L1",
+      "group": "public",
+      "priority": "high",
+      "position": { "x": 320, "y": 260 },
+      "attributes": {
+        "publicFacing": true,
+        "requiresGroundAccess": true
+      }
+    },
+    {
+      "id": "s2",
+      "name": "Retail Space",
+      "program": "retail",
+      "area": 800,
+      "level": "L1",
+      "group": "public",
+      "priority": "high",
+      "position": { "x": 560, "y": 280 },
+      "attributes": {
+        "publicFacing": true
+      }
+    },
+    {
+      "id": "s3",
+      "name": "Basketball Court",
+      "program": "sports",
+      "area": 1600,
+      "level": "L1",
+      "group": "active",
+      "priority": "medium",
+      "position": { "x": 820, "y": 320 },
+      "attributes": {
+        "largeSpan": true,
+        "preferredGroundFloor": true
+      }
+    },
+    {
+      "id": "s4",
+      "name": "Learning Hub",
+      "program": "education",
+      "area": 600,
+      "level": "L2",
+      "group": "academic",
+      "priority": "medium",
+      "position": { "x": 360, "y": 520 },
+      "attributes": {
+        "quietPreferred": true
+      }
+    },
+    {
+      "id": "s5",
+      "name": "Secondary Social Space",
+      "program": "social",
+      "area": 500,
+      "level": "L2",
+      "group": "public",
+      "priority": "medium",
+      "position": { "x": 620, "y": 520 },
+      "attributes": {
+        "publicFacing": false
+      }
+    }
+  ],
+  "relationships": [
+    { "id": "r1", "from": "s1", "to": "s2", "type": "adjacent_to", "weight": 0.9 },
+    { "id": "r2", "from": "s1", "to": "s5", "type": "grouped_with", "weight": 0.7 },
+    { "id": "r3", "from": "s2", "to": "s3", "type": "connected_to", "weight": 0.6 },
+    { "id": "r4", "from": "s4", "to": "s3", "type": "avoid", "weight": 0.5 },
+    { "id": "r5", "from": "s4", "to": "s5", "type": "visual_link", "weight": 0.4 }
+  ],
+  "groups": [
+    {
+      "id": "g1",
+      "name": "Public Zone",
+      "members": ["s1", "s2", "s5"]
+    },
+    {
+      "id": "g2",
+      "name": "Academic Zone",
+      "members": ["s4"]
+    }
+  ],
+  "constraints": [
+    { "id": "c1", "type": "target_gfa", "value": 4700 },
+    { "id": "c2", "type": "keep_public_on_lower_levels", "value": true }
+  ]
+}

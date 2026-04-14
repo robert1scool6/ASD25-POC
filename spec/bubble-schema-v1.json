@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://asd25-poc.local/spec/bubble-schema-v1.json",
+  "title": "ASD25 Bubble Diagram Model",
+  "type": "object",
+  "required": ["project", "spaces", "relationships", "levels"],
+  "properties": {
+    "project": {
+      "type": "object",
+      "required": ["id", "name", "version"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "version": { "type": "string" },
+        "description": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "spaces": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "program", "area", "level", "position"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "program": { "type": "string" },
+          "area": { "type": "number", "minimum": 0 },
+          "level": { "type": "string" },
+          "group": { "type": ["string", "null"] },
+          "priority": { "type": "string" },
+          "position": {
+            "type": "object",
+            "required": ["x", "y"],
+            "properties": {
+              "x": { "type": "number" },
+              "y": { "type": "number" }
+            },
+            "additionalProperties": false
+          },
+          "attributes": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "from", "to", "type"],
+        "properties": {
+          "id": { "type": "string" },
+          "from": { "type": "string" },
+          "to": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": ["adjacent_to", "avoid", "visual_link", "connected_to", "grouped_with"]
+          },
+          "weight": { "type": "number", "minimum": 0, "maximum": 1 }
+        },
+        "additionalProperties": true
+      }
+    },
+    "groups": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "members"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "members": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "additionalProperties": true
+      },
+      "default": []
+    },
+    "levels": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "elevation"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "elevation": { "type": "number" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "value"],
+        "properties": {
+          "id": { "type": "string" },
+          "type": { "type": "string" },
+          "value": {}
+        },
+        "additionalProperties": true
+      },
+      "default": []
+    },
+    "site": {
+      "type": "object",
+      "properties": {
+        "width": { "type": "number", "minimum": 0 },
+        "height": { "type": "number", "minimum": 0 },
+        "referenceFeatures": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "name", "kind"],
+            "properties": {
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "kind": { "type": "string" },
+              "position": {
+                "type": "object",
+                "properties": {
+                  "x": { "type": "number" },
+                  "y": { "type": "number" }
+                },
+                "additionalProperties": true
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}
