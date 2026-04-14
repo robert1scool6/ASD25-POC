@@ -3,54 +3,71 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ASD25-POC</title>
+    <title>ASD25-POC Bubble Editor</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <div class="app-shell">
       <aside class="sidebar left">
         <h1>ASD25-POC</h1>
-        <p class="muted">Bubble-model-first planning scaffold</p>
+        <p class="muted">Interactive 2D bubble editor</p>
 
         <section>
-          <h2>Views</h2>
+          <h2>Modes</h2>
+          <div class="button-row">
+            <button id="mode-move" class="active">Move bubbles</button>
+            <button id="mode-link">Add linkage</button>
+          </div>
+        </section>
+
+        <section>
+          <h2>Actions</h2>
+          <div class="button-stack">
+            <button id="reset-btn">Reset sample layout</button>
+            <button id="export-btn">Export JSON</button>
+          </div>
+        </section>
+
+        <section>
+          <h2>Instructions</h2>
           <ul>
-            <li>2D Bubble Diagram</li>
-            <li>2.5D Levels</li>
-            <li>3D Block Massing (later)</li>
+            <li>Drag bubbles to move them.</li>
+            <li>Overlapping bubbles highlight red.</li>
+            <li>Switch to <strong>Add linkage</strong>, then click two bubbles.</li>
+            <li>Click a relationship line to delete it.</li>
           </ul>
         </section>
 
         <section>
-          <h2>Prompt</h2>
-          <textarea placeholder="e.g. Increase total GFA by 20% while keeping retail on the ground floor."></textarea>
-          <button>Propose Update</button>
+          <h2>Selected</h2>
+          <div id="selection-panel" class="card muted-card">No active selection.</div>
         </section>
       </aside>
 
       <main class="canvas-area">
         <div class="toolbar">
-          <button class="active">2D</button>
-          <button>2.5D</button>
-          <button disabled>3D</button>
+          <button class="active">2D Bubble Editor</button>
+          <button disabled>2.5D Later</button>
+          <button disabled>3D Later</button>
         </div>
 
         <section class="canvas-card">
-          <h2>Bubble Canvas Placeholder</h2>
-          <p>This scaffold is ready for a future interactive bubble editor.</p>
+          <div class="canvas-header">
+            <div>
+              <h2>Editable Bubble Canvas</h2>
+              <p class="muted">Source of truth remains the bubble JSON model.</p>
+            </div>
+            <div class="legend">
+              <span><i class="dot social"></i>Social</span>
+              <span><i class="dot retail"></i>Retail</span>
+              <span><i class="dot sports"></i>Sports</span>
+              <span><i class="dot education"></i>Education</span>
+            </div>
+          </div>
 
-          <div class="bubbles-demo">
-            <div class="bubble social large" style="left: 14%; top: 22%;">Primary Social Space</div>
-            <div class="bubble retail medium" style="left: 42%; top: 26%;">Retail Space</div>
-            <div class="bubble sports xlarge" style="left: 66%; top: 31%;">Basketball Court</div>
-            <div class="bubble education medium" style="left: 28%; top: 63%;">Learning Hub</div>
-            <div class="bubble social small" style="left: 52%; top: 63%;">Secondary Social</div>
-            <svg class="links" viewBox="0 0 100 100" preserveAspectRatio="none">
-              <line x1="22" y1="28" x2="48" y2="30" />
-              <line x1="22" y1="28" x2="57" y2="66" />
-              <line x1="48" y1="30" x2="72" y2="35" />
-              <line x1="35" y1="66" x2="57" y2="66" />
-            </svg>
+          <div id="canvas" class="bubble-canvas">
+            <svg id="links-layer" class="links-layer"></svg>
+            <div id="bubbles-layer" class="bubbles-layer"></div>
           </div>
         </section>
       </main>
@@ -58,40 +75,28 @@
       <aside class="sidebar right">
         <section>
           <h2>Model Summary</h2>
-          <ul>
-            <li>Spaces: 5</li>
-            <li>Levels: 3</li>
-            <li>Relationships: 5</li>
-            <li>Target GFA: 4700</li>
-          </ul>
+          <ul id="model-summary"></ul>
         </section>
 
         <section>
-          <h2>Agent Comments</h2>
-          <div class="card">
-            <strong>Architect</strong>
-            <p>Keep public-facing spaces clustered near the main access edge.</p>
-          </div>
-          <div class="card">
-            <strong>Planner</strong>
-            <p>Ground-floor demand conflict exists between retail, sports, and social uses.</p>
-          </div>
-          <div class="card muted-card">
-            <strong>Sustainability</strong>
-            <p>Future slot for daylight / compactness comments.</p>
+          <h2>Relationship Editor</h2>
+          <div id="link-mode-panel" class="card">
+            Move mode active.
           </div>
         </section>
 
         <section>
-          <h2>Next Build Targets</h2>
-          <ol>
-            <li>Load sample JSON</li>
-            <li>Render data-driven bubbles</li>
-            <li>Apply structured patches</li>
-            <li>Add level-aware mode</li>
-          </ol>
+          <h2>Relationships</h2>
+          <div id="relationship-list" class="relationship-list"></div>
+        </section>
+
+        <section>
+          <h2>Export</h2>
+          <textarea id="export-output" readonly placeholder="Exported JSON appears here."></textarea>
         </section>
       </aside>
     </div>
+
+    <script type="module" src="./main.js"></script>
   </body>
 </html>

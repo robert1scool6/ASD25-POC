@@ -38,21 +38,36 @@ The canonical source of truth is a **bubble-diagram JSON model**.
 
 ## Quick start
 
-This first scaffold is documentation- and schema-first.
+The current repo now includes a lightweight interactive 2D bubble editor.
 
-To preview the web scaffold locally:
+To run it locally:
 
 ```bash
 cd app
 python3 -m http.server 4173
 ```
 
-Then open `http://localhost:4173`.
+Then open:
+
+```text
+http://localhost:4173
+```
+
+Note: the app loads sample data from `../data/samples/baseline-campus.json`, so serve it from the repo's `app/` folder exactly as shown.
+
+## Current interactive features
+
+- drag bubbles around the canvas
+- collision detection / red overlap feedback
+- relationship lines rendered from JSON model data
+- add new linkage by selecting two bubbles in link mode
+- delete linkage by clicking a line or using the relationship panel
+- export current model JSON from the UI
 
 ## Immediate next build tasks
 
-1. finalize bubble schema v1
-2. add JSON patch/update contract for AI actions
-3. implement canvas-based 2D editor
-4. add level-aware 2.5D view
+1. support editing relationship type/weight in UI
+2. persist model changes to local storage or backend
+3. add level-aware 2.5D view
+4. add JSON patch/update contract for AI actions
 5. add derived block-massing preview
